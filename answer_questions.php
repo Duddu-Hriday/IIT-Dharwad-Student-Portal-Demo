@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sql) === TRUE) {
         echo '<script>alert("Answer submitted successfully!");</script>';
-        header("url=forums.php");
+        header("Location:forums.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
