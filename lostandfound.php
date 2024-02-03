@@ -6,13 +6,18 @@
     <title>IIT Dharwad Student Portal</title>
     <link rel="stylesheet" href="style.css">
     <style>
-       body {
+body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
+    background-image: url('img/map.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 
 .card-container {
     display: flex;
@@ -86,27 +91,28 @@
     </style>
 </head>
 <body>
-    <header>
+    <a href="home.php" style="text-decoration:none;"><header>
         <div>
-            <img src="logo.png" alt="IIT Dharwad Logo">
+            <img src="img/logo.png" alt="IIT Dharwad Logo">
             <h1>IIT Dharwad Student Portal</h1>
         </div>
-    </header>
+    </header></a>
     <div class="card-container">
     <div class="card">
         <!-- <img src="path_to_image1.jpg" alt="Card 1 Image"> -->
         <h2>Lost an Item ?</h2>
         <p>Ever experienced that sinking feeling when you realize something valuable is missing? Before the panic sets in, take a moment to breathe and follow a simple yet crucial step - check the lost items list. It's your first line of defense against the chaos of losing your belongings. But wait, there's more! If your item doesn't make a cameo on the list, don't despair. It's time to take matters into your own hands and report the loss. Your lost treasure deserves to be found, and the journey starts with a click or a call. Don't let your prized possession slip through the cracks - act now and let the search begin!</p>
-        <button>Report Lost Item</button><br><br>
-        <button>View Found Items</button>
+        <a href="lostform.php"><button>Report Lost Item</button></a><br><br>
+        <a href="founditems.php"> <button>View Found Items</button></a>
     </div>
 
     <div class="card">
         <!-- <img src="path_to_image2.jpg" alt="Card 2 Image"> -->
         <h2>Found an Item ?</h2>
         <p>Discovering a lost item is like stumbling upon a hidden treasure, and now it's your turn to be the hero! Don't let the excitement fade away - take a moment to report your found item. Your act of kindness could reunite someone with their cherished belongings. Be the link between loss and rediscovery, and make a difference today. Reporting found items is not just a good deed; it's a chance to be the beacon of hope for someone desperately seeking what they thought was gone forever. Seize the opportunity to be a hero and play your part in this tale of lost and found</p>
-        <button>Report Found Item</button><br><br>
-        <button>View Missing List</button>
+        <a href="foundform.php
+        "><button>Report Found Item</button></a><br><br>
+        <a href="lostitems.php"><button>View Missing List</button></a>
     </div></div>
 </body>
 </html>
