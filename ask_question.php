@@ -136,7 +136,7 @@ button:hover {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Display a success message or handle other actions after form submission
                 echo "<p>Question submitted successfully! Redirecting...</p>";
-                header("refresh:2;url=home.php"); // Redirect to home.php after 2 seconds
+                header("refresh:2;url=forums.php");
                 exit();
             }
             ?>
