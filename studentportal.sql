@@ -3,13 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2024 at 07:07 PM
+-- Generation Time: Feb 04, 2024 at 12:36 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
-
-CREATE DATABASE IF NOT EXISTS `studentportal` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `studentportal`;
-
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +33,33 @@ CREATE TABLE `answers` (
   `username` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`question_id`, `answer_text`, `username`) VALUES
+(5, 'My answer', 'Hello');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL,
+  `event_name` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `event_description` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `event_name`, `date`, `event_description`) VALUES
+(1, 'Parsec 4.0', '2024-02-05', 'This is the tech fest of iit dh');
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +75,13 @@ CREATE TABLE `found_items` (
   `contact_number` varchar(10) NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `found_items`
+--
+
+INSERT INTO `found_items` (`id`, `name`, `roll_number`, `Location`, `item_name`, `contact_number`, `file`) VALUES
+(5, 'Manikanta', '210010050', 'CLT', 'Calculator', '1234667890', 'founditems/calculator.webp');
 
 -- --------------------------------------------------------
 
@@ -69,6 +99,15 @@ CREATE TABLE `lost_items` (
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `lost_items`
+--
+
+INSERT INTO `lost_items` (`id`, `name`, `roll_number`, `Location`, `item_name`, `contact_number`, `file`) VALUES
+(9, 'Duddu Hriday', '210010016', 'Admin Block', 'Mobile', '9876543210', 'lostitems/phone.jpeg'),
+(10, 'Duddu Hriday', '210010016', 'Admin Block', 'Phone', '7894561230', 'lostitems/phone.jpeg'),
+(11, 'Duddu Hriday', '210010016', 'CLT', 'Calculator', '7895212622', 'lostitems/calculator.webp');
+
 -- --------------------------------------------------------
 
 --
@@ -82,8 +121,21 @@ CREATE TABLE `questions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `quest`, `username`) VALUES
+(5, 'Local Transport for IIT Dharwad', 'Duddu Hriday');
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `found_items`
@@ -108,22 +160,28 @@ ALTER TABLE `questions`
 --
 
 --
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `found_items`
 --
 ALTER TABLE `found_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `lost_items`
 --
 ALTER TABLE `lost_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
