@@ -148,7 +148,48 @@
       </select>
     </div>
     <div id="eventContainer">
-      <!-- Events will be dynamically added here -->
+      <?php
+    // Database connection details
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "studentportal";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Fetch events from the database
+    $sql = "SELECT event_name, date, event_description FROM events";
+$result = $conn->query($sql);
+
+// Display events
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+   
+    echo '<div class="event" >';
+    echo '<h2>' . $row['event_name'] . ' (' . $row['date'] . ')</h2>';
+    echo '<div class="event-details">';
+    echo '<p>Date: ' . $row['date'] . '</p>';
+    // echo '<p>Time: ' . $row['time'] . '</p>';
+    // echo '<p>Location: ' . $row['location'] . '</p>';
+    // echo '<p>Speakers: ' . $row['speakers'] . '</p>';
+    echo '<p>Description: ' . $row['event_description'] . '</p>';
+    echo '</div>';
+    echo '</div>';
+    
+  }
+} else {
+  echo '<p>No events found.</p>';
+}
+
+// Close the database connection
+$conn->close();
+    ?>
     </div>
   </div>
   <div class="container">
@@ -163,94 +204,50 @@
     </div>
   </div>
   <script>
-    // Simulated event data (can be replaced with actual data from a server)
-    var events = [
-      {
-        name: "Career Fair",
-        type: "Job Fair",
-        date: "March 15, 2024",
-        time: "09:00 AM - 5:00 PM",
-        location: "College Gymnasium",
-        speakers: ["John Doe - HR Manager, XYZ Corporation", "Jane Smith - Career Advisor, ABC University"]
-      },
-      {
-        name: "Tech Symposium",
-        type: "Technology Conference",
-        date: "April 25, 2024",
-        time: "10:00 AM - 4:00 PM",
-        location: "College Auditorium",
-        speakers: ["Michael Johnson - CTO, Tech Innovations Inc.", "Sarah Lee - Lead Developer, Coding Academy"]
-      },
-      {
-        name: "Art Exhibition",
-        type: "Art Show",
-        date: "May 10, 2024",
-        time: "11:00 AM - 7:00 PM",
-        location: "Art Gallery",
-        speakers: ["Emily Brown - Art Curator", "David Johnson - Renowned Artist"]
-      },
-      {
-        name: "Music Festival",
-        type: "Music Concert",
-        date: "June 20, 2024",
-        time: "4:00 PM - 11:00 PM",
-        location: "College Amphitheater",
-        speakers: ["Various Artists"]
-      },
-      {
-        name: "Science Fair",
-        type: "Science Exhibition",
-        date: "July 5, 2024",
-        time: "10:00 AM - 3:00 PM",
-        location: "Science Building",
-        speakers: ["Dr. Robert Smith - Scientist", "Dr. Jessica Johnson - Researcher"]
-      }
-    ];
 
     // Function to dynamically populate events
-    function populateEvents() {
-      var eventContainer = document.getElementById("eventContainer");
-      events.forEach(function(event, index) {
-        var eventDiv = document.createElement("div");
-        eventDiv.classList.add("event");
-        eventDiv.setAttribute("onclick", "toggleDetails('eventDetails" + index + "')");
-        eventDiv.innerHTML = "<h2>" + event.name + " (" + event.type + ")<span id='eventTimer" + index + "'></span></h2>" +
-                             "<div class='event-details hidden' id='eventDetails" + index + "'>" +
-                             "<p>Date: " + event.date + "</p>" +
-                             "<p>Time: " + event.time + "</p>" +
-                             "<p>Location: " + event.location + "</p>" +
-                             "</div>" +
-                             "<div class='speakers hidden' id='speakers" + index + "'>" +
-                             "<h3>Keynote Speakers:</h3>" +
-                             "<ul>" + event.speakers.map(function(speaker) { return "<li>" + speaker + "</li>"; }).join("") + "</ul>" +
-                             "</div>" +
-                             "<div class='registration-form hidden' id='registrationForm" + index + "'>" +
-                             "<h3>Registration Form</h3>" +
-                             "<form>" +
-                             "<input type='text' placeholder='Name' required>" +
-                             "<input type='email' placeholder='Email' required>" +
-                             "<input type='submit' value='Register'>" +
-                             "</form>" +
-                             "</div>";
-        eventContainer.appendChild(eventDiv);
+    function populateEvents(events) {
+    var eventContainer = document.getElementById("eventContainer");
+    events.forEach(function (event, index) {
+      var eventDiv = document.createElement("div");
+      eventDiv.classList.add("event");
+      var timerId = "eventTimer" + index;
+      var eventId = "eventDetails" + index;
 
-        // Calculate and display countdown timer for each event
-        var countdownDate = new Date(event.date + " " + event.time.split(" - ")[0]).getTime();
-        var timer = setInterval(function() {
-          updateTimer(countdownDate, "eventTimer" + index, timer);
-        }, 1000);
+      // Use event listener to toggle event details visibility on click
+      eventDiv.addEventListener("click", function () {
+        toggleDetails(eventId, timerId);
       });
-    }
+
+      eventDiv.innerHTML = "<h2>" + event.event_name + " (" + event.date + ")<span id='" + timerId + "'></span></h2>" +
+        "<div class='event-details hidden' id='" + eventId + "'>" +
+        "<p>Date: " + event.date + "</p>" +
+        "<p>Description: " + event.event_description + "</p>" +
+        "</div>";
+      eventContainer.appendChild(eventDiv);
+
+      // Calculate and display countdown timer for each event
+      var countdownDate = new Date(event.date + " " + event.time.split(" - ")[0]).getTime();
+      var timer = setInterval(function () {
+        updateTimer(countdownDate, timerId, timer);
+      }, 1000);
+    });
+  }
 
     // Function to toggle event details visibility
-    function toggleDetails(eventId) {
-      var eventDetails = document.getElementById(eventId);
-      if (eventDetails.classList.contains("hidden")) {
-        eventDetails.classList.remove("hidden");
-      } else {
-        eventDetails.classList.add("hidden");
-      }
+    function toggleDetails(eventId, timerId) {
+    var details = document.getElementById(eventId);
+    var timer = document.getElementById(timerId);
+
+    if (details.classList.contains("hidden")) {
+      details.classList.remove("hidden");
+      // Stop the countdown timer when details are revealed
+      clearInterval(timer);
+      timer.innerHTML = " - Event details revealed";
+    } else {
+      details.classList.add("hidden");
     }
+  }
 
     // Function to update countdown timer
     function updateTimer(countdownDate, timerId, timer) {
@@ -262,7 +259,7 @@
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       document.getElementById(timerId).innerHTML = " - " + days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
       if (distance < 0) {
-        clearInterval(timer);
+        // clearInterval(timer);
         document.getElementById(timerId).innerHTML = " - Event has started";
       }
     }

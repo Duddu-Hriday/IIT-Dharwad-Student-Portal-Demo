@@ -73,14 +73,14 @@
     </style>
 </head>
 <body>
-
+<a href="home.php">
 <header>
     <div>
         <img src="img/logo.png" alt="IIT Dharwad Logo">
         <h1>IIT Dharwad Student Portal</h1>
     </div>
 </header>
-
+    </a>
 <div class="card-container">
     <a href="https://www.iitdh.ac.in/" class="card">
         <img src="img/main.png" alt="Main Website">

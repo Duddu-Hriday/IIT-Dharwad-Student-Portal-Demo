@@ -44,6 +44,7 @@
                 Fuel your curiosity, join the conversation! #StudentTalks</p>
                 <a href="forums.php"><button>Disussion Forums</button></a>
         </div>
+        
     </div>
 </body>
 </html>
