@@ -1,25 +1,39 @@
 # Team-TermiNULL-Coders-IIT-Dharwad-Student-Portal-Parsec-4.0-DevHack-5.0
-Project for the Hackathon Dev Hack 5.0 as a part of PARSEC 4.0
-Getting Started:
-First We need to download XAMPP. Here is the link to download it:
-https://www.apachefriends.org/download.html
-After downloading , we need to complete the setup. Here is a video to complete the setup of XAMPP:
-https://www.youtube.com/watch?v=Jd4H-4zfRw8
-After successful setup of xampp, We need to open XAMPP Control Panel (In the search section beside windows icon)
-On the interface click start for Apache and MySQL.
-Cloning:
-Go to C drive -> xampp folder -> htdocs folder
-In this folder clone this project
 
-Then again go to the XAMPP Control Panel and click on Admin button in the line of Mysql
-It will open php My admin web page. In this web page click on import and choose the studentportal.sql file from the folder we have cloned
-On importing we are done with the database.
+## Project Overview
 
-Now go to a web browser and type: localhost/Team-TermiNULL-Coders-IIT-Dharwad-Student-Portal-Parsec-4.0-DevHack-5.0
+Welcome to Team TermiNULL Coders' project for the Hackathon Dev Hack 5.0, presented as a part of PARSEC 4.0. Our project is a Student Portal developed using XAMPP. Follow the steps below to get started.
 
-Congratulations!! You are on the home page of our Website
+## Getting Started
 
-In order to explore the admin side of the website type this in browser: localhost/Team-TermiNULL-Coders-IIT-Dharwad-Student-Portal-Parsec-4.0-DevHack-5.0/admin.php
+1. **Download XAMPP:**
+   - Download XAMPP from [this link](https://www.apachefriends.org/download.html).
 
-Here is the link to our project youtube video:
+2. **Setup XAMPP:**
+   - Complete the setup by following the instructions in [this video](https://www.youtube.com/watch?v=Jd4H-4zfRw8).
 
+3. **Start Apache and MySQL:**
+   - Open XAMPP Control Panel (search beside the Windows icon).
+   - Start Apache and MySQL.
+
+4. **Clone the Project:**
+   - Navigate to `C:\xampp\htdocs` on your C drive.
+   - Clone the project into this folder.
+
+5. **Database Configuration:**
+   - Click on the Admin button for MySQL in the XAMPP Control Panel.
+   - In the phpMyAdmin webpage, click on "Import" and choose the `studentportal.sql` file from the cloned folder.
+   - The database setup is now complete.
+
+6. **Access the Website:**
+   - Open a web browser and type: `localhost/Team-TermiNULL-Coders-IIT-Dharwad-Student-Portal-Parsec-4.0-DevHack-5.0`
+   - Congratulations! You are on the home page of our website.
+
+7. **Explore Admin Side:**
+   - To explore the admin side, type in the browser: `localhost/Team-TermiNULL-Coders-IIT-Dharwad-Student-Portal-Parsec-4.0-DevHack-5.0/admin.php`
+
+## Project Video
+
+Watch our project in action on our [YouTube video](https://www.youtube.com/watch?v=H6s4z4yRwwM).
+
+Feel free to explore, contribute, and provide feedback. Happy coding!
